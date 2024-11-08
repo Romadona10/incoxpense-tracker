@@ -1,0 +1,40 @@
+<div class="category-list-container mat-elevation-z8">
+    <mat-toolbar color="primary">
+      <span>Expense Categories</span>
+      <button mat-raised-button color="accent" class="add-button" (click)="onAddCategory()">Add Category</button>
+    </mat-toolbar>
+  
+    <mat-table [dataSource]="categories" class="mat-elevation-z1" *ngIf="categories.length; else noCategories">
+  
+      <!-- Category Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Category Name </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.name}} </mat-cell>
+      </ng-container>
+  
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let category">
+          <button mat-icon-button color="primary" (click)="onEditCategory(category)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDeleteCategory(category)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <ng-template #noCategories>
+      <div class="empty-state">
+        <mat-icon>category</mat-icon>
+        <p>No categories found. Start by adding a new category.</p>
+        <button mat-raised-button color="primary" (click)="onAddCategory()">Add Category</button>
+      </div>
+    </ng-template>
+  </div>
+  

@@ -1,0 +1,28 @@
+<div class="monthly-report-container mat-elevation-z8">
+  <mat-toolbar color="primary">
+    <span>Monthly Report</span>
+  </mat-toolbar>
+
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      [type]="chartType"
+      [legend]="true">
+      
+    </canvas>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Select Month</mat-label>
+    <mat-select [(value)]="selectedMonth" (selectionChange)="onMonthChange($event)">
+      <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-card *ngIf="totalAmount" >
+    <mat-card-title>Total Expenses for {{ selectedMonth }}: ₦{{ totalAmount  }}</mat-card-title>
+  </mat-card>
+</div>

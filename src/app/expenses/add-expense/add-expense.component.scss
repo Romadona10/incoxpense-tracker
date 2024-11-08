@@ -1,0 +1,94 @@
+// Define some color variables for consistency and easy updates
+$primary-color: #1976d2;
+$accent-color: #e57373;
+$background-color: #fafafa;
+$text-color: #333;
+
+// Base card styling
+.expense-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: $background-color;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-y: auto;
+
+  .title {
+    font-size: 1.5rem;
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+// Full width for form fields
+.full-width {
+  width: 100%;
+}
+
+// Category container styling with spacing
+.category-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+
+  .toggle-btn {
+    white-space: nowrap;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    background-color: $accent-color;
+    color: white;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+    }
+
+    mat-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+// Button container for aligning the submit button
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  .submit-btn {
+    background-color: $primary-color;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    mat-icon {
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Responsive design for smaller screens
+@media (max-width: 600px) {
+  .expense-card {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .toggle-btn,
+  .submit-btn {
+    font-size: 0.85rem;
+  }
+}

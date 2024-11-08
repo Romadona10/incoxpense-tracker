@@ -1,0 +1,11 @@
+
+
+  <mat-card>
+    <mat-card-title>DashBoard Summary & Statistical Summation</mat-card-title>
+    <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+      <mat-tab label="Dashboard"></mat-tab>
+      <mat-tab label="Monthly Summary"></mat-tab>
+    </mat-tab-group>
+    <router-outlet></router-outlet>
+  </mat-card>
+  

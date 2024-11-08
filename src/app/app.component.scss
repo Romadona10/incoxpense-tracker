@@ -1,0 +1,181 @@
+/* Full height for the container */
+.app-container {
+  height: 100vh;
+  overflow-x: hidden;
+  background-image: url('/assets/romalogo.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+/* Sidebar for web */
+mat-sidenav {
+  width: 250px;
+  background: #ffffff; 
+}
+
+/* Mobile view adjustments for sidenav */
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 100%; /* Full width on mobile */
+    position: absolute;
+  }
+}
+
+/* Sticky toolbar */
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* Content padding */
+.content {
+  padding: 20px;
+}
+
+/* Spacer for alignment */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Active link style */
+.active-link {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+/* Sidenav colors for light and dark mode */
+mat-sidenav {
+  background-color: var(--sidenav-bg-color, #ffffff); /* Light mode background */
+  color: var(--sidenav-text-color, #000000); /* Light mode text color */
+
+  &.dark-mode {
+    background-color: #424242; /* Dark mode background */
+    color: #ffffff; /* Dark mode text color */
+  }
+}
+
+/* Nav list item style */
+mat-nav-list {
+  a {
+    font-family: 'Poppins', sans-serif;
+    color: inherit; 
+    margin: 3px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &.active-link {
+      font-weight: bold;
+      background-color: #091057;
+      border-radius: 10px;
+    }
+
+    &:hover {
+      background-color: #FF6500;
+      border-radius: 10px; 
+    }
+  }
+}
+
+/* Toolbar background color */
+mat-toolbar {
+  background-color: var(--toolbar-bg-color, #1976d2); 
+}
+
+/* User profile styling */
+.user-profile {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0; 
+
+  .profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .user-name {
+    font-weight: bold;
+    color: #333; 
+  } 
+}
+
+/* Icon styling */
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Logo styling */
+.img-logo {
+  display: inline;
+
+  .logo {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .user-profile {
+    flex-direction: column;
+    align-items: flex-start;
+    .profile-picture {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  mat-sidenav {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1;
+  }
+
+  .img-logo .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  mat-nav-list a {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .active-link {
+    background-color: #FF6500;
+  }
+
+  /* Adjust icons size for mobile */
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

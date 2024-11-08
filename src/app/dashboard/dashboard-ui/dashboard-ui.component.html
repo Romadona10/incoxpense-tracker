@@ -1,0 +1,85 @@
+<div class="dashboard-container">
+  <!-- Dashboard Header -->
+  <mat-card class="header-card">
+    <mat-card-title>Expenses Overview</mat-card-title>
+    <mat-card-subtitle>Monitor your financial activity for {{ currentYear }}</mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addNavigate()">Add New Expense</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <mat-card *ngFor="let card of summaryCards" class="summary-card">
+      <mat-card-title>{{ card.title }}</mat-card-title>
+      <mat-card-content>
+        <ng-container *ngIf="isNumber(card.value); else textContent">
+          {{ card.value | currency:currency }}
+        </ng-container>
+        <ng-template #textContent>{{ card.value }}</ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Annual Expenses Summary -->
+  <mat-card *ngIf="annualTotal > 0" class="summary-card">
+    <mat-card-title>Annual Total</mat-card-title>
+    <mat-card-content>{{ annualTotal | currency:currency }}</mat-card-content>
+  </mat-card>
+
+  <!-- Charts Section -->
+  <mat-card class="chart-card">
+    <mat-card-title>Expense Breakdown</mat-card-title>
+    <mat-card-content>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+      <div class="chart-container" *ngIf="!loading && chartData.datasets[0].data.length > 0">
+        <canvas #myChart></canvas>
+      </div>
+      <div *ngIf="!loading && chartData.datasets[0].data.length === 0">
+        <p>Start by adding your first expense to see a breakdown of your spending!</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Recent Transactions -->
+  <mat-card class="transactions-card">
+    <mat-card-title>Recent Transactions</mat-card-title>
+    <button mat-raised-button color="primary" (click)="viewAllExpenses()">
+      {{ showTransactions ? 'Hide' : 'View All' }}
+    </button>
+    <div [@smoothExpand]="showTransactions ? 'expanded' : 'collapsed'">
+      <mat-list *ngIf="showTransactions">
+        <mat-list-item *ngFor="let expense of recentExpenses">
+          <h4 mat-line>{{ expense.date | date }}</h4>
+          <p mat-line>{{ expense.description }}</p>
+          <span class="amount">{{ expense.amount | currency:currency }}</span>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card>
+
+  <!-- Budget Progress -->
+  <mat-card>
+    <mat-card-title>Budget Progress</mat-card-title>
+    <mat-card-content>
+      <mat-progress-bar mode="determinate" [value]="(totalExpenses / userBudget) * 100"></mat-progress-bar>
+      <p>{{ totalExpenses | currency:currency }} / {{ userBudget | currency:currency }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+ 
+  
+
+
+
+
+  <!-- Savings Progress -->
+  <!-- <mat-card>
+    <mat-card-title>Savings Goal</mat-card-title>
+    <mat-card-content>
+      <mat-progress-bar mode="determinate" [value]="savingsProgress"></mat-progress-bar>
+    </mat-card-content>
+  </mat-card>
+</div> -->

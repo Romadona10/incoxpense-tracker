@@ -1,0 +1,23 @@
+<div class="add-category-form mat-elevation-z8">
+  <mat-toolbar color="primary">
+    <span>Add New Category</span>
+  </mat-toolbar>
+
+  <!-- Progress Bar -->
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Category Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter category name">
+      <mat-error *ngIf="categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched">
+        Category name is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.invalid || isLoading">Save</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+    </div>
+  </form>
+</div>

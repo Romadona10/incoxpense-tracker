@@ -1,0 +1,63 @@
+/* Preferences container styles */
+.preferences-container {
+  width: 100%;
+  max-width: 400px;  /* Default width for web devices */
+  margin: auto;
+  padding: 1.5rem;
+
+  /* Ensure form fields and slide toggle take full width */
+  mat-form-field, mat-slide-toggle {
+    display: block;
+    margin: 1rem 0;
+  }
+
+  /* Progress bar margin */
+  mat-progress-bar {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  /* Button styling */
+  button {
+    width: 100%; /* Make button full-width on mobile */
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Web devices (min-width: 768px) */
+@media (min-width: 768px) {
+  .preferences-container {
+    max-width: 600px; /* Increase max-width for larger screens */
+    padding: 2rem; /* Slightly increase padding for web */
+  }
+
+  button {
+    width: auto; /* Button width should be auto on web */
+    padding: 12px 24px; /* Adjust button padding */
+  }
+
+  mat-form-field, mat-slide-toggle {
+    margin: 1.5rem 0; /* Add more space between elements on larger screens */
+  }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .preferences-container {
+    max-width: 100%; /* Ensure full width on mobile */
+    padding: 1.5rem; /* Maintain consistent padding on mobile */
+  }
+
+  /* Adjust input and select field size for mobile */
+  mat-form-field, mat-slide-toggle {
+    margin: 1rem 0;
+    width: 100%; /* Ensure fields are full width */
+  }
+
+  button {
+    width: 100%; /* Make the button full-width on mobile */
+    font-size: 14px; /* Adjust font size for mobile */
+    padding: 12px;  /* Make button padding more touch-friendly */
+  }
+}

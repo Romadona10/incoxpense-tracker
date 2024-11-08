@@ -1,0 +1,30 @@
+.category-list-container {
+    margin: 20px;
+    .add-button {
+      margin-left: auto;
+    }
+    mat-table {
+      width: 100%;
+    }
+  
+    .mat-header-cell, .mat-cell {
+      padding: 16px;
+    }
+
+    
+  
+    .empty-state {
+      text-align: center;
+      margin: 40px 0;
+      mat-icon {
+        font-size: 48px;
+        color: #757575;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 18px;
+        color: #757575;
+      }
+    }
+  }
+  

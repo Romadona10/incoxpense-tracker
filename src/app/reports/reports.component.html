@@ -1,0 +1,8 @@
+<mat-card>
+    <mat-card-title>Reports</mat-card-title>
+    <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+        <mat-tab label="Monthly Report"></mat-tab>
+      <mat-tab label="Export Report"></mat-tab>
+    </mat-tab-group>
+    <router-outlet></router-outlet>
+  </mat-card>

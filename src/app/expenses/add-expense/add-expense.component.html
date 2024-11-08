@@ -1,0 +1,56 @@
+<mat-card class="expense-card">
+  <mat-card-title class="title">Add New Expense</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Date Field -->
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Category Field with Custom Option -->
+      <div class="category-container">
+        <mat-form-field class="full-width" appearance="fill" *ngIf="!isCustomCategory">
+          <mat-label for="category">Category</mat-label>
+          <mat-select formControlName="category" id="category">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill" *ngIf="isCustomCategory">
+          <mat-label for="custom Category">Custom Category</mat-label>
+          <input matInput formControlName="customCategory" placeholder="Enter custom category" id="custom Category">
+        </mat-form-field>
+
+        <button mat-stroked-button color="primary" type="button" (click)="toggleCustomCategory()" class="toggle-btn">
+          <mat-icon>{{ isCustomCategory ? 'list' : 'add' }}</mat-icon>
+          {{ isCustomCategory ? 'Choose from List' : 'Add Category' }}
+        </button>
+      </div>
+
+      <!-- Description Field -->
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label for="description">Description</mat-label>
+        <input matInput formControlName="description" placeholder="Describe your expense" id="description">
+      </mat-form-field>
+
+      <!-- Amount Field -->
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label for="amount">Amount</mat-label>
+        <input matInput type="number" formControlName="amount" placeholder="Enter amount" id="amount">
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <div class="btn-container">
+        <button mat-raised-button color="primary" type="submit" class="submit-btn">
+          <mat-icon>add_circle</mat-icon> Add Expense
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,51 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 200px;
+  cursor: pointer;
+  background-color: #CB9DF0; 
+  border: 1px solid #ddd;
+  border-radius: 8px; 
+  padding: 15px; 
+  transition: transform 0.2s;
+  
+  // Hover effect
+  &:hover {
+    transform: scale(1.05); 
+  }
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+}
+
+.transactions-card {
+  max-height: 300px;
+  // overflow: auto;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .summary-cards {
+    flex-direction: column;
+  }
+
+  .summary-card {
+    min-width: 100%;
+  }
+}
+
+

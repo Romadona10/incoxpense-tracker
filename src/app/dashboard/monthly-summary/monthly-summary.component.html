@@ -1,0 +1,51 @@
+<div class="monthly-summary">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <h2>Monthly Summary</h2>
+
+  <div class="month-year-picker">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Month</mat-label>
+      <mat-select [formControl]="selectedMonth" (selectionChange)="onMonthChange()">
+        <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Year</mat-label>
+      <input matInput type="number" [formControl]="selectedYear" (input)="onMonthChange()">
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let expense"> {{ expense.date | date: 'MM/dd/yyyy' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+      <td mat-cell *matCellDef="let expense"> {{ expense.category }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let expense"> {{ expense.description }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+      <td mat-cell *matCellDef="let expense"> {{ currencySymbol }}{{ expense.amount }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+
+  <div class="total">
+    <p>Total Expenses this month: {{ currencySymbol }}{{ getTotal() }}</p>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="addNavigate()">Add New Expense</button>
+</div>

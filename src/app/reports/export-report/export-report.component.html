@@ -1,0 +1,18 @@
+<div class="export-report-container mat-elevation-z8">
+    <mat-toolbar color="primary">
+      <span>Export Report</span>
+    </mat-toolbar>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Select Format</mat-label>
+      <mat-select [(value)]="selectedFormat">
+        <mat-option value="pdf">PDF</mat-option>
+        <mat-option value="excel">Excel</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div class="form-actions">
+      <button mat-raised-button color="primary"(click)="onExport()" >Export</button>
+    </div>
+  </div>
+  

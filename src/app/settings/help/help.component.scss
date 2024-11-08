@@ -1,0 +1,16 @@
+
+.help-container{
+    overflow-y: auto;
+
+    mat-card-actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    span{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: #0D92F4;
+    }
+}

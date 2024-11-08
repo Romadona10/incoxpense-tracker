@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; // Use Poppins as the primary font
+  font-size: 16px; // Optional: Set a base font size
+  line-height: 1.5; // Optional: Set a comfortable line height
+  color: #333; // Optional: Set a default text color for better readability
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif; // Apply Poppins to headers
+  font-weight: 600; // Use a bolder weight for headers
+}
+
+p {
+  font-family: 'Poppins', sans-serif; // Apply Poppins to paragraphs
+  font-weight: 400; // Regular weight for paragraphs
+}
+
+span{
+  font-family: 'Poppins', sans-serif;  
+}
+
+/* Define a light theme */
+$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$light-warn: mat.define-palette(mat.$red-palette);
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
+  )
+));
+
+/* Define a dark theme */
+$dark-primary: mat.define-palette(mat.$deep-purple-palette);
+$dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+$dark-warn: mat.define-palette(mat.$red-palette);
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn,
+  )
+));
+
+/* Apply the light theme by default */
+@include mat.all-component-themes($light-theme);
+
+/* Optional: Define a class for the dark theme */
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
+
+:root {
+  --sidenav-bg-color: #ffffff; /* Light mode sidebar */
+  --sidenav-text-color: #000000; /* Light mode text */
+  --toolbar-bg-color: #1976d2; /* Toolbar background color */
+}
+
+.dark-theme {
+  --sidenav-bg-color: #424242; /* Dark mode sidebar */
+  --sidenav-text-color: #ffffff; /* Dark mode text */
+  --toolbar-bg-color: #333333; /* Dark mode toolbar background */
+}
+
+
+ /* Custom Scrollbar Styles */
+ ::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4158A6; /* Color of the scrollbar thumb */
+  border-radius: 30px; /* Rounded corners of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4158A6; /* Color of the scrollbar thumb on hover */
+}
+
+mat-card-title{
+  text-align: center;
+  margin: 0 7px;
+}
+
+mat-icon:hover{
+  background-color: #37AFE1;
+}

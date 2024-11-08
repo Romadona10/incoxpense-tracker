@@ -1,0 +1,42 @@
+<div class="preferences-container mat-elevation-z8">
+  <mat-progress-bar *ngIf="saving" mode="indeterminate"></mat-progress-bar>
+  
+    <mat-toolbar color="primary">
+      <span>Preferences</span>
+    </mat-toolbar>
+
+  
+    <form [formGroup]="preferencesForm" (ngSubmit)="onSavePreferences()">
+      <!-- Currency Selection -->
+      <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <mat-select formControlName="currency">
+          <mat-option *ngFor="let currency of currencies" [value]="currency">
+            {{ currency }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+       <!-- Budget Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Budget</mat-label>
+      <input matInput type="number" formControlName="userBudget" placeholder="Enter your budget" />
+    </mat-form-field>
+  
+      <!-- Notifications Toggle -->
+      <mat-slide-toggle formControlName="notifications" color="primary">Enable Notifications</mat-slide-toggle>
+  
+      <!-- Reminder Frequency -->
+      <mat-form-field appearance="outline">
+        <mat-label>Reminder Frequency</mat-label>
+        <mat-select formControlName="reminderFrequency">
+          <mat-option *ngFor="let option of reminderOptions" [value]="option.value">
+            {{ option.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Save Preferences</button>
+    </form>
+  </div>
+  

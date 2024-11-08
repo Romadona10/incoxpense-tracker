@@ -1,0 +1,80 @@
+mat-dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  mat-dialog-content {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+  
+    p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+  
+      mat-icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+        color: #1976d2; /* Blue color for icons */
+      }
+  
+      a {
+        font-size: 1.2rem;
+        color: #1976d2;
+        text-decoration: none;
+        font-weight: 500;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    mat-dialog-content {
+      padding: 15px;
+      font-size: 1rem; /* Adjust font size for small screens */
+    }
+  
+    mat-dialog-title {
+      font-size: 1.3rem;
+    }
+  
+    mat-icon {
+      font-size: 1.3rem;
+    }
+  
+    a {
+      font-size: 1.1rem;
+    }
+  }
+
+  .img-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    img{
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+    }
+  }
+  

@@ -1,0 +1,21 @@
+.edit-category-form {
+    margin: 20px;
+    mat-toolbar {
+      margin-bottom: 20px;
+    }
+  
+    mat-form-field {
+      width: 100%;
+    }
+  
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+  
+      button {
+        margin-left: 10px;
+      }
+    }
+  }
+  
