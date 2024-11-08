@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
         (users: any[]) => {
           this.users = users.map(user => ({
             ...user,
-            picture: user.picture  ? `http://localhost:5000/uploads/${user.picture}`:null
+            picture: user.picture  ? `https://expensetracker-backend-q5pq.onrender.com/uploads/${user.picture}`:null
           }));
         },
         (error) => {

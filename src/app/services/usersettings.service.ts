@@ -14,7 +14,7 @@ interface UserSettings {
   providedIn: 'root'
 })
 export class UserSettingsService {
-  private apiUrl = 'http://localhost:5000/api/user-settings';
+  private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/user-settings';
 
   private settingsUpdated = new BehaviorSubject<any>(null); // Subject to notify changes
   settingsUpdated$ = this.settingsUpdated.asObservable();

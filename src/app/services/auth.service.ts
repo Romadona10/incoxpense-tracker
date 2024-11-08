@@ -14,7 +14,7 @@ interface User {
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:5000/api/auth';
+    private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/auth';
     private token: string | null = null;
     private isAdmin: boolean = false;
     
@@ -48,7 +48,7 @@ export class AuthService {
                     localStorage.setItem('isAdmin', response.isAdmin.toString());
                     localStorage.setItem('userId', response.userId);
                     // localStorage.setItem('userProfilePicture', this.userPicture);
-                    localStorage.setItem('userProfilePicture', `http://localhost:5000/uploads/${response.picture}`);
+                    localStorage.setItem('userProfilePicture', `https://expensetracker-backend-q5pq.onrender.com/uploads/${response.picture}`);
     
                     this.getProfile().subscribe(profile => this.userProfileSubject.next(profile));
                 })
