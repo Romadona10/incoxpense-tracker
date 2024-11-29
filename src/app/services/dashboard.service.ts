@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DashboardService {
 
-  private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/expenses';
+  private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/api/expenses';
 
   constructor(private http: HttpClient) { }
 

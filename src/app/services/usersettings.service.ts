@@ -7,14 +7,16 @@ interface UserSettings {
   currency: string;
   notifications: boolean;
   reminderFrequency: string;
-  userBudget: number;
+  monthlyBudget: number;   // New field for monthly budget
+  annualBudget: number;    // New field for annual budget
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserSettingsService {
-  private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/user-settings';
+  private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/user-settings';
+ 
 
   private settingsUpdated = new BehaviorSubject<any>(null); // Subject to notify changes
   settingsUpdated$ = this.settingsUpdated.asObservable();

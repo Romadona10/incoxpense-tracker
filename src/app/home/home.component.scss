@@ -1,0 +1,235 @@
+.hero {
+  background-image: url('/assets/growth-curve.jpg'); 
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+
+  .hero-content {
+    max-width: 800px;
+    margin: auto;
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      margin-top: 30px;
+
+      button {
+        margin: 0 15px;
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+
+.features {
+  background: #f9f9f9;
+  padding: 50px 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+  }
+
+  .feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    mat-card {
+      width: 280px;
+      text-align: center;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      h3 {
+        margin-top: 15px;
+        font-size: 1.4rem;
+        color: #333;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #666;
+      }
+    }
+  }
+}
+
+.image-carousel {
+  margin: 40px auto;
+  width: 90%;
+  max-width: 800px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  .slides {
+    display: flex;
+    animation: moveImages 20s linear infinite;
+
+    .slide {
+      flex: 0 0 100%;
+      position: relative;
+
+      img {
+        margin-top: 5px;
+        width: 50%; // Adjusted for responsiveness
+        height: 50%; // Maintains aspect ratio
+        object-fit: cover;
+       
+        border-radius: 10px;
+
+        @media (max-width: 768px) {
+          width: 80%; // Adjusted for responsiveness
+          height: 50%; // Maintains aspect ratio
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+
+      .caption {
+        position: absolute;
+        // bottom: 20px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px 12px;
+        font-size: 1rem;
+        border-radius: 5px;
+        z-index: 2; // Ensures caption is above the image
+        max-width: calc(100% - 40px); // Prevents overflow beyond the container
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        // max-width: 90%; // Ensure it fits within smaller screens
+        @media (max-width: 768px) {
+          position: absolute;
+        // bottom: 20px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 8px 12px;
+        font-size: 1rem;
+        z-index: 2;
+        }
+      }
+    }
+  }
+
+  @keyframes moveImages {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-600%); // Adjust based on the number of slides
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: 250px;
+
+    .slides .slide img {
+      border-radius: 8px;
+    }
+
+    .slides .slide .caption {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.testimonials {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+
+  h2 {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem; // Slightly smaller for mobile
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+
+    .slides {
+      display: flex;
+      transition: transform 1s ease-in-out;
+
+      .slide {
+        flex: 0 0 100%;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        p {
+          font-style: italic;
+          font-size: 1.1rem; // Adjusted for readability on smaller screens
+          color: #666;
+        }
+
+        h4 {
+          margin-top: 10px;
+          font-weight: bold;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    .carousel .slides .slide {
+      padding: 15px;
+    }
+
+    .carousel .slides .slide p {
+      font-size: 1rem;
+    }
+  }
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}

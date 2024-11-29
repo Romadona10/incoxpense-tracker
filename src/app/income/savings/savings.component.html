@@ -1,0 +1,43 @@
+<mat-card class="savings-card">
+    <mat-card-header>
+      <mat-card-title class="savings-title">
+        Savings Overview
+       
+      </mat-card-title>
+    </mat-card-header>
+    
+    
+      <mat-card-content>
+        <div class="savings-summary">
+          <mat-grid-list cols="2" rowHeight="200px" gutterSize="16px">
+            <!-- <mat-grid-list cols="1" rowHeight="1:1" gutterSize="16px"> -->
+            <mat-grid-tile *ngFor="let savings of savingsData">
+              <mat-card class="savings-summary-card">
+                <mat-card-header>
+                  <mat-card-title>{{ savings.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="progress-container">
+                    <mat-progress-bar mode="determinate" [value]="savings.progress" color="primary"></mat-progress-bar>
+                  </div>
+                  <p>{{ savings.description }}</p>
+                  <p class="savings-amount">Current: {{ savings.amount | currency: selectedCurrency }}</p>
+                  <p>Goal: {{ savings.goal | currency: selectedCurrency }}</p>
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </mat-card-content>
+    
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="addSavings()">Add Savings Goal</button>
+      </mat-card-actions>
+    </mat-card>
+    
+    <mat-dialog-actions *ngIf="isSavingsFormOpen">
+      <app-savings-form (closeForm)="closeSavingsForm()"></app-savings-form>
+    </mat-dialog-actions>
+     
+  
+      

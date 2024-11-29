@@ -1,21 +1,22 @@
 <div class="notifications">
   <mat-card *ngIf="notifications.length > 0; else noNotifications">
     <mat-card-title>Notifications</mat-card-title>
-    <mat-list>
-      <mat-list-item *ngFor="let notification of notifications">
-        <p mat-line>{{ notification.message }}</p>
-        <p mat-line class="timestamp">{{ notification.timestamp | date: 'short' }}</p>
-      </mat-list-item>
-    </mat-list>
+    <mat-card-content>
+      <div *ngFor="let notification of notifications" class="notification-item">
+        <p>{{ notification.message }}</p>
+        <p class="timestamp">{{ notification.timestamp | date: 'short' }}</p>
+      </div>
+    </mat-card-content>
   </mat-card>
-  
+
   <ng-template #noNotifications>
     <mat-card>
-      <mat-card-title>No notifications yet</mat-card-title>
-      <p >Wait for the original time you fixed on the settings </p>
+      <mat-card-title>No Notifications Yet</mat-card-title>
+      <p>Notifications will appear here based on your settings.
+        And once you register an expense,click the see the update</p>
     </mat-card>
   </ng-template>
-
 </div>
+
 
   

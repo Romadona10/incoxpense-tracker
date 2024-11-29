@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ForgotPasswordModalComponent } from 'src/app/dialogs/forgot-password-modal/forgot-password-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent {
   isforgetPasswordMode:boolean = false;
   isLoading: boolean = false;
 
-  constructor(private fb:FormBuilder,private router:Router,private authService:AuthService,private snackbar:MatSnackBar){
+  constructor(private fb:FormBuilder,private router:Router,private authService:AuthService, private dialog: MatDialog ,private snackbar:MatSnackBar){
      this.loginForm = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       password:['',[Validators.required,Validators.minLength(6)]]
@@ -43,7 +45,7 @@ export class LoginComponent {
           this.snackbar.open('Login successful', 'close', { duration: 3000 });
   
          
-          this.router.navigateByUrl('/dashboard/dashboard-ui'); 
+          this.router.navigate(['/home']); 
         },
         (error: HttpErrorResponse) => {
           console.error('Login error:', error);
@@ -61,6 +63,11 @@ export class LoginComponent {
       const { email } = this.forgottenPasswordForm.value;
       // Handle forgot password logic
       console.log('Forgot password request', { email });
+
+      this.dialog.open(ForgotPasswordModalComponent, {
+        width: '400px',
+        disableClose: true, 
+      });
     }
   }
 

@@ -12,7 +12,7 @@ interface Category {
   providedIn: 'root'
 })
 export class CategoryService {
-  private apiUrl = `https://expensetracker-backend-q5pq.onrender.com/api/categories`;
+  private apiUrl = `https://expensetracker-backend-1-hdf2.onrender.com/api/categories`;
 
   constructor(private http: HttpClient) {}
 

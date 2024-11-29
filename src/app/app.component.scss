@@ -1,179 +1,103 @@
-/* Full height for the container */
+/* Apply Poppins font-family globally */
+:root {
+  font-family: 'Poppins', sans-serif;
+}
+
 .app-container {
+  background-image: url('/assets/app-logo.png');
   height: 100vh;
   overflow-x: hidden;
-  background-image: url('/assets/romalogo.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Sidebar for web */
 mat-sidenav {
   width: 250px;
-  background: #ffffff; 
-}
+  background-color: var(--mat-primary, #1976d2); // Angular Material primary color
+  color: #ffffff;
 
-/* Mobile view adjustments for sidenav */
-@media (max-width: 768px) {
-  mat-sidenav {
-    width: 100%; /* Full width on mobile */
-    position: absolute;
+  .sidenav-toolbar {
+    color: #ffffff;
+    font-weight: bold;
   }
 }
 
-/* Sticky toolbar */
+mat-sidenav-content {
+  font-family: 'Poppins', sans-serif;
+}
+
 mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 2;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Content padding */
-.content {
-  padding: 20px;
-}
+mat-nav-list a {
+  font-family: 'Poppins', sans-serif !important;
+  color: inherit;
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
 
-/* Spacer for alignment */
-.spacer {
-  flex: 1 1 auto;
-}
+  
 
-/* Active link style */
-.active-link {
-  background-color: rgba(0, 0, 0, 0.1);
-  font-weight: bold;
-}
+  &.active-link {
+    background-color: #FF6500;
+    font-weight: bold;
+    border-radius: 10px;
+  }
 
-/* Sidenav colors for light and dark mode */
-mat-sidenav {
-  background-color: var(--sidenav-bg-color, #ffffff); /* Light mode background */
-  color: var(--sidenav-text-color, #000000); /* Light mode text color */
-
-  &.dark-mode {
-    background-color: #424242; /* Dark mode background */
-    color: #ffffff; /* Dark mode text color */
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
   }
 }
 
-/* Nav list item style */
-mat-nav-list {
-  a {
-    font-family: 'Poppins', sans-serif;
-    color: inherit; 
-    margin: 3px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    &.active-link {
-      font-weight: bold;
-      background-color: #091057;
-      border-radius: 10px;
-    }
-
-    &:hover {
-      background-color: #FF6500;
-      border-radius: 10px; 
-    }
-  }
-}
-
-/* Toolbar background color */
-mat-toolbar {
-  background-color: var(--toolbar-bg-color, #1976d2); 
-}
-
-/* User profile styling */
 .user-profile {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #f0f0f0; 
-
+  background-color: rgba(255, 255, 255, 0.1);
   .profile-picture {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
   }
-
   .user-name {
     font-weight: bold;
-    color: #333; 
-  } 
+    color: #ffffff;
+  }
 }
 
-/* Icon styling */
 .icon {
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  vertical-align: middle;
 }
 
-/* Logo styling */
-.img-logo {
-  display: inline;
-
-  .logo {
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
+.spacer {
+  flex: 1 1 auto;
 }
 
-/* Mobile adjustments */
+.content {
+  padding: 20px;
+}
+
 @media (max-width: 768px) {
-  mat-toolbar {
-    padding: 10px;
-    font-size: 14px;
+  mat-sidenav {
+    width: 50%;
   }
 
   .content {
     padding: 10px;
   }
 
-  .user-profile {
-    flex-direction: column;
-    align-items: flex-start;
-    .profile-picture {
-      width: 30px;
-      height: 30px;
-    }
-  }
-
-  mat-sidenav {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1;
-  }
-
-  .img-logo .logo {
-    width: 40px;
-    height: 40px;
-  }
-
-  mat-nav-list a {
-    font-size: 14px;
+  mat-toolbar {
     padding: 10px;
+    font-size: 14px;
   }
 
-  .spacer {
-    flex: 1;
-  }
-
-  .active-link {
-    background-color: #FF6500;
-  }
-
-  /* Adjust icons size for mobile */
   .icon {
     width: 20px;
     height: 20px;

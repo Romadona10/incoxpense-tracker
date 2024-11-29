@@ -1,0 +1,49 @@
+.savings-dialog {
+  
+    width: 80%;
+    max-width: 800px;
+    font-family: 'Poppins', sans-serif;
+     h2, mat-dialog-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4caf50 !important;
+        font-family: 'Poppins', sans-serif;
+      }
+  
+      h3{
+        font-family: 'Poppins', sans-serif;
+      }
+     
+      mat-dialog-content {
+        p {
+          margin-bottom: 15px;
+          font-size: 1rem;
+          color: #333;
+        }
+    
+        ul {
+          font-family: 'Poppins', sans-serif;
+          list-style-type: disc;
+          padding-left: 20px;
+         
+          li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+          }
+        }
+      }
+    
+      mat-dialog-actions {
+        button {
+          text-transform: capitalize;
+          
+        }
+      }
+  
+      /* Blur effect for the modal backdrop */
+  ::ng-deep .cdk-overlay-backdrop {
+    backdrop-filter: blur(25px); 
+    background-color: rgba(105, 117, 101)
+    }
+  }

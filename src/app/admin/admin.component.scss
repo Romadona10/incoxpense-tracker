@@ -13,6 +13,10 @@
     mat-progress-bar {
       margin-bottom: 20px;
     }
+
+    mat-card-title{
+      font-family:'Poppins', sans-serif ;
+    }
   
     /* Adjust image size */
     img {
@@ -35,15 +39,20 @@
     width: 100%;
     overflow-x: auto;
     display: block; /* Allow table to scroll on small screens */
+    font-family: 'Poppins',sans-serif !important;
+
   
     /* Column header and cell styles */
     mat-header-cell, mat-cell {
       padding: 10px 15px;
       text-align: left;
+      font-family: 'Poppins',sans-serif !important;
     }
   
     mat-header-row {
       background-color: #f5f5f5;
+      font-family: 'Poppins',sans-serif !important;
+
     }
   
     /* Styling for action buttons */

@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: { name: string; email: string; profileImage: string | null } = { 
-    name: '', 
+  user: { userName: string; email: string; profileImage: string | null } = { 
+    userName: '', 
     email: '', 
     profileImage: null 
   };
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   fetchUserProfile() {
     this.authService.getProfile().subscribe(
       (response) => {
-        this.user.name = response.fullName;
+        this.user.userName = response.fullName;
         this.user.email = response.email;
         this.user.profileImage = `http://localhost:5000/uploads/${response.profileImage}`; // profileImage now includes 'uploads/'
       },
@@ -43,13 +43,13 @@ export class ProfileComponent implements OnInit {
   editProfile() {
     const dialogRef = this.dialog.open(EditProfileDialogComponent, {
       width: '400px',
-      data: { name: this.user.name, email: this.user.email }
+      data: { name: this.user.userName, email: this.user.email }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Update user profile with the result from the dialog
-        this.user.name = result.name;
+        this.user.userName = result.userName;
         this.user.email = result.email;
       }
     });

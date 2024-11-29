@@ -6,7 +6,7 @@ $text-color: #333;
 
 // Base card styling
 .expense-card {
-  max-width: 400px;
+  max-width: 500px;
   margin: auto;
   padding: 20px;
   background-color: $background-color;
@@ -57,7 +57,8 @@ $text-color: #333;
 // Button container for aligning the submit button
 .btn-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-top: 10px;
 
   .submit-btn {

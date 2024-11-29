@@ -1,0 +1,68 @@
+
+<mat-card class="income-form-card">
+    <mat-card-header>
+      <mat-card-title>Add Income</mat-card-title>
+      <div *ngIf="isLoading" class="loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Income Source -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Income Source</mat-label>
+          <input matInput placeholder="e.g., Salary, Freelance" formControlName="source" />
+          <mat-error *ngIf="incomeForm.get('source')?.hasError('required')">
+            Source is required
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Amount -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Amount</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Enter amount"
+            formControlName="amount"
+            
+          />
+          <mat-error *ngIf="incomeForm.get('amount')?.hasError('required')">
+            Amount is required
+          </mat-error>
+          <mat-error *ngIf="incomeForm.get('amount')?.hasError('min')">
+            Amount must be greater than zero
+          </mat-error>
+        </mat-form-field>
+        
+          
+  
+        <!-- Date -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Select date" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="incomeForm.get('date')?.hasError('required')">
+            Date is required
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Description -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Additional notes (optional)" formControlName="description"></textarea>
+        </mat-form-field>
+  
+        <!-- Submit and Cancel Buttons -->
+        <div class="button-group">
+          <button mat-raised-button color="primary" type="submit" [disabled]="incomeForm.invalid">Save Income</button>
+          <button mat-button type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <!-- (keydown)="onAmountKeyDown($event)" -->

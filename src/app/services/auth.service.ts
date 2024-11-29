@@ -10,11 +10,20 @@ interface User {
     picture?: string;
 }
 
+interface LoginResponse {
+    token: string;
+    isAdmin: boolean;
+    userId: string;
+    picture: string;
+    fullName: string; // Add this line
+}
+
+
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/auth';
+    private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/api/auth';
     private token: string | null = null;
     private isAdmin: boolean = false;
     
@@ -37,24 +46,24 @@ export class AuthService {
         return this.http.post(`${this.apiUrl}/register`, formData);
     }
 
-    login(email: string, password: string): Observable<any> {
-        return this.http.post<{ token: string, isAdmin: boolean, userId: string ,picture:string}>(`${this.apiUrl}/login`, { email, password })
+    login(email: string, password: string): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password })
             .pipe(
                 tap(response => {
+                    console.log('Login response:', response);
                     this.token = response.token;
                     this.isAdmin = response.isAdmin;
     
                     localStorage.setItem('token', response.token);
                     localStorage.setItem('isAdmin', response.isAdmin.toString());
                     localStorage.setItem('userId', response.userId);
-                    // localStorage.setItem('userProfilePicture', this.userPicture);
-                    localStorage.setItem('userProfilePicture', `https://expensetracker-backend-q5pq.onrender.com/uploads/${response.picture}`);
-    
+                    localStorage.setItem('userProfilePicture', `https://expensetracker-backend-1-hdf2.onrender.com/uploads/${response.picture}`);
+                    localStorage.setItem('userName', response.fullName); // Store the name in localStorage
                     this.getProfile().subscribe(profile => this.userProfileSubject.next(profile));
                 })
             );
     }
-
+    
     getProfile(): Observable<any> {
         const token = localStorage.getItem('token');
         if (!token) return new Observable(); 

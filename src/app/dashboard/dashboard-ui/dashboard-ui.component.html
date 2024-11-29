@@ -9,17 +9,25 @@
   </mat-card>
 
   <!-- Summary Cards -->
+ 
   <div class="summary-cards">
     <mat-card *ngFor="let card of summaryCards" class="summary-card">
       <mat-card-title>{{ card.title }}</mat-card-title>
       <mat-card-content>
-        <ng-container *ngIf="isNumber(card.value); else textContent">
-          {{ card.value | currency:currency }}
+        <ng-container *ngIf="card.title === 'Total Transactions'; else otherCards">
+          {{ card.value }}
+          <p>Transactions</p>
         </ng-container>
-        <ng-template #textContent>{{ card.value }}</ng-template>
+        <ng-template #otherCards>
+          <ng-container *ngIf="isNumber(card.value); else textContent">
+            {{ card.value | currency:currency }}
+          </ng-container>
+          <ng-template #textContent>{{ card.value }}</ng-template>
+        </ng-template>
       </mat-card-content>
     </mat-card>
   </div>
+  
 
   <!-- Annual Expenses Summary -->
   <mat-card *ngIf="annualTotal > 0" class="summary-card">
@@ -62,8 +70,18 @@
   <mat-card>
     <mat-card-title>Budget Progress</mat-card-title>
     <mat-card-content>
-      <mat-progress-bar mode="determinate" [value]="(totalExpenses / userBudget) * 100"></mat-progress-bar>
-      <p>{{ totalExpenses | currency:currency }} / {{ userBudget | currency:currency }}</p>
+      <!-- Dynamically change color based on budget status -->
+      <mat-progress-bar 
+        mode="determinate" 
+        [value]="(totalExpenses / annualBudget) * 100" 
+        [color]="(totalExpenses > annualBudget) ? 'warn' : 'primary'">
+      </mat-progress-bar>
+      <p>{{ totalExpenses | currency: currency }} / {{ annualBudget | currency: currency }}</p>
+
+      <!-- Warning Message When Budget is Exceeded -->
+      <p *ngIf="totalExpenses > annualBudget" class="budget-exceeded">
+        <strong>Budget exceeded!</strong>
+      </p>
     </mat-card-content>
   </mat-card>
 </div>

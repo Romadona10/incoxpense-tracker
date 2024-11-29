@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnInit, StaticClassProvider } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { DashboardService } from 'src/app/services/dashboard.service';
@@ -39,7 +39,8 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
   annualTotal: number = 0;
   showTransactions = false;
   currency: string = '₦';
-  userBudget: number = 10000;
+  annualBudget:number = 10000
+  // userBudget: number = 10000;
 
   totalExpenses: number = 0;
   remainingBudget: number = 0;
@@ -47,13 +48,15 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
   totalTransactions: number = 0;
 
   @ViewChild('myChart') myChartRef!: ElementRef<HTMLCanvasElement>;
-  chart: Chart<'pie', number[], string> | undefined;
+  chart: Chart<'bar', number[], string> | undefined;
 
   chartData = {
     datasets: [
       {
         data: [] as number[],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF6500'],
+        backgroundColor: ['#604CC3','#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+          '#FF6500', '#1A1A19', '#31511E', '#F6FCDF', '#000B58',
+          '#003161', '#006A67', '#FFF4B7','#FF6600','#F5F5F5','#8FD14F',],
       }
     ],
     labels: [] as string[]
@@ -71,7 +74,7 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
     private router: Router,
     private dashboardService: DashboardService,
     private userSettingsService: UserSettingsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
@@ -80,7 +83,7 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
     this.userSettingsService.settingsUpdated$.subscribe(settings => {
       if (settings) {
         if (settings.currency) this.currency = settings.currency;
-        if (settings.userBudget) this.userBudget = settings.userBudget;
+        if (settings.annualBudget) this.annualBudget = settings.annualBudget;
       }
     });
   }
@@ -108,8 +111,8 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.chart = new Chart<'pie', number[], string>(ctx, {
-      type: 'pie',
+    this.chart = new Chart<'bar', number[], string>(ctx, {
+      type: 'bar',
       data: this.chartData,
       options: {
         responsive: true,
@@ -163,7 +166,7 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
   calculateOverview(): void {
     this.totalExpenses = this.annualExpenses.reduce((sum, month) => sum + month.total, 0);
     this.totalTransactions = this.annualExpenses.reduce((sum, month) => sum + month.transactions, 0);
-    this.remainingBudget = this.userBudget - this.totalExpenses;
+    this.remainingBudget = this.annualBudget - this.totalExpenses;
     this.topCategory = this.getTopCategory();
   }
 
@@ -214,7 +217,7 @@ export class DashboardUiComponent implements OnInit, AfterViewInit {
     this.userSettingsService.getUserSettings(this.userId).subscribe(settings => {
       if (settings) {
         if (settings.currency) this.currency = settings.currency;
-        if (settings.userBudget) this.userBudget = settings.userBudget;
+        if (settings.annualBudget) this.annualBudget = settings.annualBudget;
       }
     });
   }

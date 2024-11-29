@@ -1,79 +1,74 @@
-<mat-sidenav-container class="app-container">
-  
-    <!-- Sidebar -->
-    <mat-sidenav #sidenav mode="side" opened>
-     
+<mat-sidenav-container class="app-container" *ngIf="authService.isAuthenticated()">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav" [class.dark-mode]="isDarkTheme">
+    <mat-toolbar color="primary" class="sidenav-toolbar">Expenses Tracker</mat-toolbar>
+    <div class="user-profile">
+      <img [src]="userPicture" alt="User Picture" class="profile-picture" />
+      <span class="user-name">{{ userName }}</span>
+    </div>
 
-      <mat-toolbar color="primary">
-        Expenses Tracker
-      </mat-toolbar>
-      <div class="user-profile">
-        <img [src]="userPicture" alt="User Picture" class="profile-picture" />
-        <span class="user-name">{{ userName }}</span>
-      </div>
-      <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/dashboard3.png" alt="Dashboard" class="icon"> Dashboard
-        </a>
-        <a mat-list-item routerLink="/expenses" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/expense1.png" alt="Expenses" class="icon"> Expenses
-        </a>
-        <a mat-list-item routerLink="/reports" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/reports1.png" alt="Reports" class="icon"> Reports
-        </a>
-        <a mat-list-item routerLink="/categories" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/categories1.png" alt="Categories" class="icon"> Categories
-        </a>
-        <a *ngIf="authService.getIsAdmin()" mat-list-item routerLink="/admin" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/admin.png" alt="Categories" class="icon"> 
-          Admin
-        </a>
-        <a mat-list-item routerLink="/settings" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/settings1.png" alt="settings" class="icon"> Settings
-        </a>
-        <a mat-list-item routerLink="/help" routerLinkActive="active-link" (click)="sidenav.toggle()">
-          <img src="assets/help1.png" alt="help" class="icon"> Help
-        </a>
-      </mat-nav-list>
-      
-    </mat-sidenav>
-  
-    <!-- Main content -->
-    <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav">
-          <mat-icon>menu</mat-icon>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/dashboard3.png" alt="Dashboard" class="icon"> <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/expenses" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/expense1.png" alt="Expenses" class="icon"> <span>Expenses</span>
+      </a>
+      <a mat-list-item routerLink="/income" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/income1.png" alt="Income" class="icon"><span>Income & Savings</span>  <img src="assets/savings.png" alt="Savings" class="icon">
+      </a>
+      <a mat-list-item routerLink="/reports" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/reports1.png" alt="Reports" class="icon"> <span>Reports</span> 
+      </a>
+      <a mat-list-item routerLink="/categories" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/categories1.png" alt="Categories" class="icon"> <span>Categories</span> 
+      </a>
+      <a *ngIf="authService.getIsAdmin()" mat-list-item routerLink="/admin" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/admin.png" alt="Admin" class="icon"> <span>Admin</span> 
+      </a>
+      <a mat-list-item routerLink="/settings" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/settings1.png" alt="Settings" class="icon"> <span>Settings</span> 
+      </a>
+      <a mat-list-item routerLink="/help" routerLinkActive="active-link" (click)="sidenav.toggle()">
+        <img src="assets/help1.png" alt="Help" class="icon"> <span>Help</span> 
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Expenses Tracker</span>
+      <span class="spacer"></span>
+
+      <div class="notifications-button buttons">
+        <button mat-icon-button matBadge="{{ click }}" matBadgeColor="accent" (click)="toggleNotifications()">
+          <mat-icon>notifications</mat-icon>
         </button>
-        <!-- <span>Expenses Tracker</span> -->
-        <mat-toolbar color="primary">
-            <span>Expenses Tracker</span>
-            <span class="spacer"></span>
-            <button mat-icon-button matBadge="{{ notificationsCount }}" matBadgeColor="accent" (click)="toggleNotifications()">
-              <mat-icon>notifications</mat-icon>
-            </button>
-            
-            <button mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
-            <button mat-icon-button (click)="toggleTheme()">
-              <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
-            </button>
-            <div class="img-logo">
-              <img src="/assets/romalogo.webp" alt="" class="logo">
-            </div>
-          </mat-toolbar>
-          
-         
-         
-      </mat-toolbar>
-      
-      <!-- Main Router outlet to display views -->
-      <div class="content">
-        <router-outlet></router-outlet>
       </div>
-    </mat-sidenav-content>
-  
-  </mat-sidenav-container>
-  
-  <!-- app.component.html -->
+      <div class="toggle-button buttons">
+        <button mat-icon-button (click)="toggleTheme()">
+          <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
+      </div>
+      <div class="logout-button buttons" (click)="logout()">
+        <button mat-icon-button ><mat-icon>logout</mat-icon></button>
+      </div>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div *ngIf="!authService.isAuthenticated()">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Notifications Component -->
 <div *ngIf="showNotifications">
   <app-notifications></app-notifications>
 </div>

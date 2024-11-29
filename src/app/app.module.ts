@@ -30,6 +30,12 @@ import { ExportModalComponent } from './dialogs/export-modal/export-modal.compon
 import { NotificationsComponent } from './dialogs/notifications/notifications.component';
 import { NoDataModalComponent } from './dialogs/no-data-modal/no-data-modal.component';
 import { EmailownerComponent } from './dialogs/emailowner/emailowner.component';
+import { SavingsNotificationsComponent } from './dialogs/savings-notifications/savings-notifications.component';
+import { NumberFormatPipe } from './pipes/number-format.pipe';
+
+import { HomeComponent } from './home/home.component';
+import { ForgotPasswordModalComponent } from './dialogs/forgot-password-modal/forgot-password-modal.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -42,6 +48,12 @@ import { EmailownerComponent } from './dialogs/emailowner/emailowner.component';
     NotificationsComponent,
     NoDataModalComponent,
     EmailownerComponent,
+    SavingsNotificationsComponent,
+    NumberFormatPipe,
+    HomeComponent,
+    ForgotPasswordModalComponent,
+    // SavingsFormComponent,
+    // IncomeformComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,9 +74,11 @@ import { EmailownerComponent } from './dialogs/emailowner/emailowner.component';
     MatSnackBarModule,
     MatIconModule,
     MatListModule,
+    MatPaginatorModule,
    MatProgressSpinnerModule,
     MatCardModule,
     NgChartsModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

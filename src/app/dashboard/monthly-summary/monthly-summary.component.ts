@@ -23,7 +23,10 @@ export class MonthlySummaryComponent implements OnInit {
   selectedMonth = new FormControl<string | null>(moment().format('MMMM')); // Month name selection
   selectedYear = new FormControl<number>(moment().year()); // Year selection
   userId: string = '';
+  totalExpenses: number = 0;
+  // currency: string = '₦';
   currencySymbol: string = '₦'; 
+  monthlyBudget:number = 100000;
   loading: boolean = false;
 
   months: string[] = moment.months(); // Array of month names
@@ -41,6 +44,7 @@ export class MonthlySummaryComponent implements OnInit {
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId') || '';
     this.loadUserCurrency();
+    this.loadUserSettings()
 
     // Get the initial month and year
     const monthIndex = moment().month(this.selectedMonth.value || 'January').month() + 1;
@@ -95,8 +99,10 @@ export class MonthlySummaryComponent implements OnInit {
           if (data && data.expenses && data.expenses.length > 0) {
             this.expenses = data.expenses;
             this.dataSource.data = this.expenses; 
+            this.totalExpenses = this.getTotal();
           } else {
             this.openNoDataModal(); 
+            this.totalExpenses = 0;
           }
         },
         error => {
@@ -130,6 +136,15 @@ export class MonthlySummaryComponent implements OnInit {
     this.dialog.open(NoDataModalComponent, {
       width: '400px',
       data: { message: 'No expenses found for the selected month.' }
+    });
+  }
+
+  loadUserSettings() {
+    this.userSettingsService.getUserSettings(this.userId).subscribe(settings => {
+      if (settings) {
+        if (settings.currency) this.currencySymbol = settings.currency;
+        if (settings.monthlyBudget) this. monthlyBudget = settings.monthlyBudget;
+      }
     });
   }
 }

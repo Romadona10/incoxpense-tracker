@@ -1,14 +1,19 @@
-
-.help-container{
+.help-container {
     overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
 
-    mat-card-actions{
+    mat-card-subtitle {
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    mat-card-actions {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    
-    span{
+
+    span {
         font-family: 'Poppins', sans-serif;
         font-weight: 700;
         color: #0D92F4;

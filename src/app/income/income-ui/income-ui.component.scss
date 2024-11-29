@@ -1,0 +1,136 @@
+.income-container {
+    // max-width: 800px;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+  
+   
+  
+    .income-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      mat-form-field {
+        width: 100%;
+  
+        mat-label {
+          font-weight: bold;
+        }
+  
+        input, textarea {
+          // padding: 8px;
+          border-radius: 4px;
+        }
+  
+        textarea {
+          resize: vertical;
+        }
+      }
+  
+      button {
+        align-self: center;
+        padding: 12px 20px;
+        background-color: #3f51b5;
+        color: white;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #303f9f;
+        }
+  
+        &:disabled {
+          background-color: #b0bec5;
+          cursor: not-allowed;
+        }
+      }
+    }
+  
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    table {
+      margin-top: 30px;
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0 10px;
+  
+      th  {
+        background-color: #fff;
+        color: #0D92F4 ;
+        font-weight: bold;
+        padding: 16px; 
+        font-family: 'Poppins', sans-serif !important;
+        text-align: center;
+  
+      }
+  
+      td {
+        font-family: 'Poppins',sans-serif;
+        color: #347928 !important;
+        padding: 12px;
+        text-align: center;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+      }
+  
+  
+      mat-row:nth-child(even) {
+        background-color: #f1f1f1;
+      }
+  
+      mat-row:hover {
+        background-color: #e0e0e0;
+      }
+  
+      .mat-header-cell, .mat-cell {
+        font-size: 14px;
+        text-align: center;
+        color: #3f51b5;
+      }
+    }
+  
+    mat-paginator {
+      margin-top: 20px;
+    }
+    
+  
+    mat-form-field.full-width {
+      margin-bottom: 20px;
+    }
+  
+    .month-picker {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .total-income{
+      display: flex;
+      justify-content: center;
+      font-size: 16px; 
+      font-weight: bold;
+      text-align: center;
+      color: green;
+      margin-bottom: 20px;
+    }
+
+    .none-income{
+        text-align: center;
+    }
+  }
+  

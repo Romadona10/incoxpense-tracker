@@ -1,17 +1,76 @@
-/* Add styles for the notifications modal or panel */
 .notifications {
-    position: fixed;
-    top: 10%;
-    right: 10%;
-    z-index: 9999;
-    // background-color: blue;
-    padding: 10px;
-    border-radius: 8px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    // width: 100%;
-    
-  
-    
+  position: fixed;
+  top: 7%; 
+  right: 5%; 
+  z-index: 9999;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Desktop width */
+  width: 100%;
+  overflow-y: auto;
+  max-height: 70vh; /* Prevent overflow for larger lists */
+
+  @media (max-width: 600px) {
+    top: 7%; /* Reduce top spacing */
+    right: 2%; /* Reduce right spacing */
+    left: 2%; /* Center notifications horizontally on mobile */
+    width: auto; /* Automatically adjust width to fit */
+    max-width: 60%; /* Limit width to 90% of the screen */
+    max-height: 40vh; /* Reduce max height for better fit */
   }
-  
+}
+
+.mat-card {
+  margin-bottom: 15px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 10px; /* Reduce spacing on smaller screens */
+  }
+}
+
+.notification-item {
+  padding: 12px;
+  background-color: #f9f9f9;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    padding: 10px; /* Reduce padding */
+    margin-bottom: 5px; /* Reduce spacing */
+  }
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 5px;
+
+  @media (max-width: 600px) {
+    font-size: 0.7rem; /* Slightly smaller font for mobile */
+    margin-top: 3px; /* Reduce spacing */
+  }
+}
+
+/* Add a smooth scrolling effect for better usability on mobile */
+.notifications {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #ccc #f9f9f9;
+
+  &::-webkit-scrollbar {
+    width: 8px; /* Chrome, Safari */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f9f9f9;
+  }
+}

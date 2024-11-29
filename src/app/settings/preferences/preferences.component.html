@@ -18,10 +18,16 @@
       </mat-form-field>
 
        <!-- Budget Input -->
-    <mat-form-field appearance="outline">
-      <mat-label>Budget</mat-label>
-      <input matInput type="number" formControlName="userBudget" placeholder="Enter your budget" />
-    </mat-form-field>
+       <mat-form-field appearance="outline">
+        <mat-label>Monthly Budget</mat-label>
+        <input matInput type="number" formControlName="monthlyBudget" placeholder="Enter your monthly budget" />
+      </mat-form-field>
+  
+      <!-- Annual Budget Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Annual Budget</mat-label>
+        <input matInput type="number" formControlName="annualBudget" placeholder="Enter your annual budget" />
+      </mat-form-field>
   
       <!-- Notifications Toggle -->
       <mat-slide-toggle formControlName="notifications" color="primary">Enable Notifications</mat-slide-toggle>

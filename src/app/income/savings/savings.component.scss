@@ -1,0 +1,30 @@
+
+.savings-swiper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .savings-summary-card {
+    scroll-snap-align: start;
+    min-width: 300px; /* Adjust width as necessary */
+    margin: 8px;
+    transition: transform 0.3s;
+  }
+  
+  .savings-summary-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .savings-title {
+    display: flex;
+    align-items: center;  /* Aligns the text and image vertically */
+    justify-content: space-between;  /* Aligns the text and image to opposite sides */
+  }
+  
+  .savings-image {
+    width: 24px;  /* Adjust size of the image */
+    height: 24px;  /* Adjust size of the image */
+    margin-left: 8px;  /* Add some space between the text and the image */
+  }
+  

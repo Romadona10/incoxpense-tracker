@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from 'src/app/services/notificationsettings.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-notifications',
@@ -9,25 +9,33 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NotificationsComponent implements OnInit {
   notifications: { message: string; timestamp: Date }[] = [];
+  userId: string = '';
 
-  constructor(
-    private notificationService: NotificationService,
-    private authService: AuthService
-  ) {}
+  constructor(private expenseService: ExpenseService,private authservice:AuthService) {}
 
   ngOnInit(): void {
-    this.notifications = [
-      { message: 'You have spent $50 today!', timestamp: new Date() },
-      { message: 'Reminder: Monthly budget is due', timestamp: new Date() }
-    ];
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.notificationService.startNotifications(userId); // Ensure notifications are started
+    this.userId = localStorage.getItem('userId') || '';
+    if (this.userId) {
+      this.fetchNotifications();
     }
-
-    this.notificationService.notifications$.subscribe(notifications => {
-      console.log('Notifications updated:', notifications); // Log to debug
-      this.notifications = notifications;
-    });
   }
+
+  fetchNotifications(): void {
+    const duration = 'frequently'; // Ensure you set 'frequently' here
+    this.expenseService.getExpensesByDuration(this.userId, duration).subscribe(
+      (response: any) => {
+        // Check if response.notifications is an array
+        if (Array.isArray(response.notifications)) {
+          this.notifications = response.notifications;
+        } else {
+          console.error('Notifications are not in the expected format:', response.notifications);
+        }
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
+  }
+  
+ 
 }

@@ -10,9 +10,10 @@ import { UserSettingsService } from 'src/app/services/usersettings.service';
 })
 export class PreferencesComponent implements OnInit {
   preferencesForm: FormGroup;
-  userId = 'user_id_here';
+  userId:string = '';
   currencies = ['$', '€', '£', '¥', '₦'];
   reminderOptions = [
+    { value: 'frequently', viewValue: 'Frequently' },
     { value: 'daily', viewValue: 'Daily' },
     { value: 'weekly', viewValue: 'Weekly' },
     { value: 'monthly', viewValue: 'Monthly' }
@@ -28,7 +29,8 @@ export class PreferencesComponent implements OnInit {
       currency: [''],
       notifications: [false],
       reminderFrequency: [''],
-      userBudget: [0]
+      monthlyBudget: [0],    
+      annualBudget: [0]
     });
   }
 
@@ -49,13 +51,11 @@ export class PreferencesComponent implements OnInit {
     this.saving = true;  // Show progress bar
     const preferences = this.preferencesForm.value;
 
-
     setTimeout(() => {
       this.userSettingsService.updateUserSettings(this.userId, preferences).subscribe({
         next: () => {
           this.saving = false;
           this.snackBar.open('Preferences saved successfully!', 'Close', { duration: 3000 });
-
           this.userSettingsService.notifySettingsUpdated(preferences);
         },
         error: () => {

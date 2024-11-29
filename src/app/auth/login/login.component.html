@@ -1,62 +1,63 @@
-<mat-card class="auth-card">
-  <div class="progress-bar">
-    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-  </div>
-  <div class="img-logo">
-    <img src="/assets/romalogo.webp" alt="" class="logo">
-  </div>
-    <mat-card-title>Login</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Enter your email" />
-          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-            Enter a valid email
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Password</mat-label>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Enter your password" />
-          <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword" type="button">
-            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-            Password is required
-          </mat-error>
-        </mat-form-field>
-  
-        <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
-      </form>
-    </mat-card-content>
-  
-    <mat-card-actions class="auth-actions">
-      <button mat-button color="warn" (click)="switchToForgotPassword()">Forgot Password?</button>
-      <button mat-button color="accent" (click)="switchToRegister()">Create Account</button>
-    </mat-card-actions>
-  </mat-card>
-  
-  <!-- Forgot Password Card -->
-  <mat-card *ngIf="isforgetPasswordMode" class="auth-card">
-    <mat-card-title>Forgot Password</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="forgottenPasswordForm" (ngSubmit)="onSubmitForgotPassword()">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Enter your email" />
-          <mat-error *ngIf="forgottenPasswordForm.get('email')?.hasError('required')">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="forgottenPasswordForm.get('email')?.hasError('email')">
-            Enter a valid email
-          </mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="forgottenPasswordForm.invalid">Reset Password</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+<div class="login-wrapper">
+
+  <mat-card class="auth-card">
+    <div class="progress-bar">
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    </div>
+    
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter your email" />
+            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Enter your password" />
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword" type="button">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+    
+          <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+        </form>
+      </mat-card-content>
+    
+      <mat-card-actions class="auth-actions">
+        <button mat-button color="warn" (click)="switchToForgotPassword()">Forgot Password?</button>
+        <button mat-button color="accent" (click)="switchToRegister()">Create Account</button>
+      </mat-card-actions>
+    </mat-card>
+    
+    <!-- Forgot Password Card -->
+    <mat-card *ngIf="isforgetPasswordMode" class="auth-card">
+      <mat-card-title>Forgot Password</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="forgottenPasswordForm" (ngSubmit)="onSubmitForgotPassword()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter your email" />
+            <mat-error *ngIf="forgottenPasswordForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="forgottenPasswordForm.get('email')?.hasError('email')">
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="forgottenPasswordForm.invalid">Reset Password</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    
+</div>

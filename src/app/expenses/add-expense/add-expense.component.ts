@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingmodalComponent } from 'src/app/dialogs/loadingmodal/loadingmodal.component';
 import { ExpenseService } from 'src/app/services/expense.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-expense',
@@ -13,18 +15,20 @@ import { ExpenseService } from 'src/app/services/expense.service';
 export class AddExpenseComponent implements OnInit {
   expenseForm!: FormGroup;
   isCustomCategory: boolean = false;
-  categories: string[] = ['Groceries', 'Rent','Religious-giving', 'Utilities', 'Transportation', 'Entertainment', 'Food', 'Electronics',
-     'Clothing', 'Health', 'Insurance', 'Wardrobe', 'Baby', 'Subscription', 'Beauty', 'Bills', 'Sports'];
+  categories: string[] = []; // Dynamically fetched categories
 
   constructor(
     private fb: FormBuilder,
     private expenseService: ExpenseService,
+    private categoryService: CategoryService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    this.loadCategories();
   }
 
   initializeForm(): void {
@@ -37,33 +41,52 @@ export class AddExpenseComponent implements OnInit {
     });
   }
 
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe(
+      (categories) => {
+        this.categories = categories.map((cat) => cat.name); // Extract category names
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+        this.snackBar.open('Error fetching categories!', 'Close', {
+          duration: 3000,
+        });
+      }
+    );
+  }
+
   onSubmit(): void {
     if (this.expenseForm.valid) {
-      // Open loading modal
       const dialogRef = this.dialog.open(LoadingmodalComponent);
 
       const newExpense = {
         ...this.expenseForm.value,
-        userId: localStorage.getItem('userId')
+        userId: localStorage.getItem('userId'),
+        category: this.isCustomCategory
+          ? this.expenseForm.value.customCategory
+          : this.expenseForm.value.category,
       };
 
-      // Simulate a delay of 5 seconds
-      setTimeout(() => {
-        this.expenseService.addExpense(newExpense).subscribe({
-          next: (response) => {
-            console.log('Expense added successfully:', response);
-            dialogRef.close(); // Close loading modal after request completes
-            this.snackBar.open('Expense added successfully!', 'Close', {
-              duration: 3000
-            });
-            this.resetForm();
-          },
-          error: (error) => {
-            dialogRef.close(); // Close loading modal on error
-            console.error('Error adding expense:', error);
+      this.expenseService.addExpense(newExpense).subscribe({
+        next: (response) => {
+          console.log('Expense added successfully:', response);
+
+          // Add the custom category to the list if it's not already there
+          if (this.isCustomCategory && !this.categories.includes(newExpense.category)) {
+            this.categories.push(newExpense.category);
           }
-        });
-      }, 5000); // 5 seconds delay
+
+          dialogRef.close();
+          this.snackBar.open('Expense added successfully! click the notifications Icon', 'Close', {
+            duration: 3000,
+          });
+          this.resetForm();
+        },
+        error: (error) => {
+          dialogRef.close();
+          console.error('Error adding expense:', error);
+        },
+      });
     }
   }
 
@@ -73,7 +96,7 @@ export class AddExpenseComponent implements OnInit {
       category: '',
       customCategory: '',
       description: '',
-      amount: ''
+      amount: '',
     });
     this.isCustomCategory = false;
   }
@@ -88,5 +111,9 @@ export class AddExpenseComponent implements OnInit {
     }
     this.expenseForm.get('category')?.updateValueAndValidity();
     this.expenseForm.get('customCategory')?.updateValueAndValidity();
+  }
+
+  onNavigate(){
+    this.router.navigate(['dashboard/monthly-summary'])
   }
 }

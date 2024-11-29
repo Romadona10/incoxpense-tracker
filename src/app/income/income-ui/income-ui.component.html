@@ -1,0 +1,100 @@
+<div class="income-container">
+    <h2>Income Management</h2>
+  
+    <mat-card *ngIf="!isFormVisible">
+      <!-- Income Table (Visible by Default) -->
+  
+  
+      <div *ngIf="isLoading" class="loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+  
+      <div class="month-year-picker">
+        <mat-form-field appearance="outline">
+          <mat-label>Select Month</mat-label>
+          <mat-select [formControl]="selectedMonth" (selectionChange)="onMonthChange()">
+            <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Select Year</mat-label>
+          <input matInput type="number" [formControl]="selectedYear" (input)="onMonthChange()">
+        </mat-form-field>
+      </div>
+  
+  
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading && incomes.length > 0">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+  
+          <td mat-cell *matCellDef="let income"> {{ income.date | date: 'shortDate' }} </td>
+  
+  
+        </ng-container>
+  
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount</th>
+  
+          <td mat-cell *matCellDef="let income">{{ currencySymbol }} {{ income.amount }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let income"> {{ income.description }} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <p class="none-income" *ngIf="!isLoading && incomes.length === 0">No income records for the selected month.</p>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  
+      <div class="total-income">
+        <p>Total Income: {{ currencySymbol }} {{ totalIncome }}</p>
+      </div>
+      <button mat-raised-button color="primary" (click)="toggleFormVisibility()">Add Income</button>
+    </mat-card>
+  
+    <!-- Income Form (Visible after clicking Add Income) -->
+    <mat-card class="form-card" *ngIf="isFormVisible">
+      <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()" class="income-form">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" formControlName="amount" required />
+          <mat-error *ngIf="incomeForm.get('amount')?.hasError('required')">Amount is required</mat-error>
+          <mat-error *ngIf="incomeForm.get('amount')?.hasError('min')">Amount must be positive</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="incomeForm.get('date')?.hasError('required')">Date is required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="2"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="monthly">Monthly</mat-option>
+            <mat-option value="annual">Annual</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="incomeForm.invalid">Add Income</button>
+      </form>
+      <button mat-button (click)="toggleFormVisibility()">Cancel</button> <!-- Cancel button to hide the form -->
+    </mat-card>
+  </div>
+  
+  
+  
+  
