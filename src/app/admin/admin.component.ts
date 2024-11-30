@@ -43,7 +43,7 @@ export class AdminComponent implements OnInit {
         (users: any[]) => {
           this.dataSource.data = users.map(user => ({
             ...user,
-            picture: user.picture ? `http://localhost:5000/uploads/${user.picture}` : null
+            picture: user.picture ? `https://expensetracker-backend-1-hdf2.onrender.com/uploads/${user.picture}` : null
           }));
           this.dataSource.paginator = this.paginator; // Assign paginator after fetching data
         },
