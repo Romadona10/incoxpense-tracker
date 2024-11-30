@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   showLogoutWarning: boolean = false;
   logoutCountdown: number = 0;
   countdownInterval: any;
-  backgroundImageUrl = `url('/assets/app-logo.png')`;
+  backgroundImageUrl = `url('assets/app-logo.png')`;
 
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
