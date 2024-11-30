@@ -1,4 +1,4 @@
-<mat-sidenav-container class="app-container" *ngIf="authService.isAuthenticated()">
+<mat-sidenav-container class="app-container"  *ngIf="authService.isAuthenticated()" [ngStyle]="{'background-image': backgroundImageUrl}">
   <mat-sidenav #sidenav mode="side" opened class="sidenav" [class.dark-mode]="isDarkTheme">
     <mat-toolbar color="primary" class="sidenav-toolbar">Expenses Tracker</mat-toolbar>
     <div class="user-profile">

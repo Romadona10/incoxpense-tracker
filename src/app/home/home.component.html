@@ -1,4 +1,4 @@
-<div class="home-container" *ngIf="authService.isAuthenticated()">
+<div class="home-container" [ngStyle]="{'background-image': backgroundImageUrl}">
 <div class="hero">
     <div class="hero-content">
       <h1>Take Control of Your Finances Today!</h1>

@@ -1,5 +1,5 @@
 .hero {
-  background-image: url('/assets/growth-curve.jpg'); 
+   
   color: white;
   text-align: center;
   padding: 60px 20px;
@@ -168,6 +168,11 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 800px;
+  display: flex;               
+  flex-direction: column;      
+  justify-content: center;      
+  align-items: center;         
+  height: auto; 
 
   h2 {
     margin-bottom: 20px;
@@ -182,6 +187,7 @@
     .slides {
       display: flex;
       transition: transform 1s ease-in-out;
+      justify-content: center;
 
       .slide {
         flex: 0 0 100%;
@@ -189,17 +195,21 @@
         background: #ffffff;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;           
+        margin: auto;    
 
         p {
           font-style: italic;
           font-size: 1.1rem; // Adjusted for readability on smaller screens
           color: #666;
+          text-align: center;
         }
 
         h4 {
           margin-top: 10px;
           font-weight: bold;
           color: #333;
+          text-align: center;
         }
       }
     }
@@ -212,12 +222,16 @@
 
     .carousel .slides .slide {
       padding: 15px;
+      max-width: 90%;
     }
 
     .carousel .slides .slide p {
       font-size: 1rem;
     }
   }
+
+ 
+
 }
 
 footer {

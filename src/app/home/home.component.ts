@@ -10,6 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class HomeComponent {
   isMobile: boolean = false;
   isSidenavOpened: boolean = true;
+  backgroundImageUrl = `url('/assets/growth-curve.jpg')`;
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
 
