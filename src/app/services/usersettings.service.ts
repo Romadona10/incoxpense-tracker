@@ -15,7 +15,7 @@ interface UserSettings {
   providedIn: 'root'
 })
 export class UserSettingsService {
-  private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/user-settings';
+  private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/api/user-settings';
  
 
   private settingsUpdated = new BehaviorSubject<any>(null); // Subject to notify changes
