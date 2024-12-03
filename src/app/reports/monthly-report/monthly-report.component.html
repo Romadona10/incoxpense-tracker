@@ -1,4 +1,7 @@
 <div class="monthly-report-container mat-elevation-z8">
+  <div class="loading">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"  color="accent"></mat-progress-bar>
+  </div>
   <mat-toolbar color="primary">
     <span>Monthly Report</span>
   </mat-toolbar>

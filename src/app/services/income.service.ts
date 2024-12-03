@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IncomeService {
-  
+
   private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/api';
 
   constructor(private http: HttpClient) { }
@@ -22,23 +22,23 @@ export class IncomeService {
 
   // POST method to add new income entry
 
-// Add 'type' as an argument
-postIncome(userId: string, amount: number, date: string, description: string, type: string): Observable<any> {
-  const body = { userId, amount, date, description, type };
-  const headers = this.getAuthHeaders();
-  return this.http.post(`${this.apiUrl}/income/add`, body, { headers });
-}
+  // Add 'type' as an argument
+  postIncome(userId: string, amount: number, date: string, description: string, type: string): Observable<any> {
+    const body = { userId, amount, date, description, type };
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${this.apiUrl}/income/add`, body, { headers });
+  }
 
 
   // GET method to fetch income for a specific year and month
- // GET method to fetch income for a specific year and month
-getIncome(userId: string, year: number, month: number): Observable<any> {
-  const params = new HttpParams()
-    .set('year', year.toString())
-    .set('month', month.toString());
-  const headers = this.getAuthHeaders();
-  return this.http.get(`${this.apiUrl}/income/monthly/${userId}`, { params, headers });
-}
+  
+  getIncome(userId: string, year: number, month: number): Observable<any> {
+    const params = new HttpParams()
+      .set('year', year.toString())
+      .set('month', month.toString());
+    const headers = this.getAuthHeaders();
+    return this.http.get(`${this.apiUrl}/income/monthly/${userId}`, { params, headers });
+  }
 
 
   // POST method to add new savings entry

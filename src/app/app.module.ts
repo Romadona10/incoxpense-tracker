@@ -36,6 +36,7 @@ import { NumberFormatPipe } from './pipes/number-format.pipe';
 import { HomeComponent } from './home/home.component';
 import { ForgotPasswordModalComponent } from './dialogs/forgot-password-modal/forgot-password-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NoReportComponent } from './dialogs/no-report/no-report.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     NumberFormatPipe,
     HomeComponent,
     ForgotPasswordModalComponent,
+    NoReportComponent,
     // SavingsFormComponent,
     // IncomeformComponent,
   ],

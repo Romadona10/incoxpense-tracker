@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReportService {
-  private apiUrl = 'https://expensetracker-backend-q5pq.onrender.com/api/expenses/report/monthly';
+  private apiUrl = 'https://expensetracker-backend-1-hdf2.onrender.com/api/expenses/report/monthly';
 
   constructor(private http: HttpClient) {}
 
